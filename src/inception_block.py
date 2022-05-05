@@ -8,6 +8,7 @@ class InceptionBlock(nn.Module):
     def __init__(self, in_channels, n_filters, kernel_sizes=[9, 19, 39], bottleneck_channels=32, activation=nn.ReLU(), use_residual=True):
         super(InceptionBlock, self).__init__()
         self.activation = activation
+        self.use_residual = use_residual
         self.inception_1 = Inception(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation)
         self.inception_2 = Inception(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation)
         self.inception_3 = Inception(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation)
