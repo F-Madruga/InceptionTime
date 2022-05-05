@@ -48,7 +48,7 @@ class Inception(nn.Module):
     
     def forward(self, X):
         y_bottleneck = self.bottleneck(X)
-        y_maxpool = self(X)
+        y_maxpool = self.maxpool(X)
         y1 = self.conv_bootleneck_1(y_bottleneck)
         y2 = self.conv_bootleneck_2(y_bottleneck)
         y3 = self.conv_bootleneck_3(y_bottleneck)
