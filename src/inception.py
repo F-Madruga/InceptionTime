@@ -34,7 +34,7 @@ class Inception(nn.Module):
             padding=kernel_sizes[2]//2,
             bias=False
         )
-        self.max_pool == nn.MaxPool1d(kernel_size=3, stride=1, padding=1)
+        self.max_pool = nn.MaxPool1d(kernel_size=3, stride=1, padding=1)
         self.conv_maxpool = nn.Conv1d(
             in_channels=in_channels,
             out_channels=n_filters,
@@ -48,7 +48,7 @@ class Inception(nn.Module):
     
     def forward(self, X):
         y_bottleneck = self.bottleneck(X)
-        y_maxpool = self.maxpool(X)
+        y_maxpool = self.max_pool(X)
         y1 = self.conv_bootleneck_1(y_bottleneck)
         y2 = self.conv_bootleneck_2(y_bottleneck)
         y3 = self.conv_bootleneck_3(y_bottleneck)
