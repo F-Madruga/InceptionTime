@@ -6,8 +6,9 @@ import torch.nn as nn
 
 
 class InceptionTime(pl.LightningModule):
-    def __init__(self, in_channels, num_classes, n_filters=32, kernel_sizes=[9, 19, 39], bottleneck_channels=32, activation=nn.ReLU(), use_residual=True):
+    def __init__(self, in_channels, num_classes, learning_rate, n_filters=32, kernel_sizes=[9, 19, 39], bottleneck_channels=32, activation=nn.ReLU(), use_residual=True):
         super(InceptionTime, self).__init__()
+        self.learning_rate = learning_rate
         self.train_accuracy = Accuracy()
         self.val_accuracy = Accuracy()
         self.test_accuracy = Accuracy()
