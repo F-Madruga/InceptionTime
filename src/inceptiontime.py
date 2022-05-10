@@ -1,4 +1,3 @@
-from turtle import forward
 from inception_block import InceptionBlock
 import pytorch_lightning as pl
 from torchmetrics import Accuracy
@@ -18,7 +17,7 @@ class InceptionTime(pl.LightningModule):
         self.inception_block_4 = InceptionBlock(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation, use_residual=use_residual)
         self.inception_block_5 = InceptionBlock(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation, use_residual=use_residual)
         self.adaptive_avg_pool = nn.AdaptiveAvgPool1d(output_size=1)
-        self.flatten = nn.Flatten(full=False)
+        self.flatten = nn.Flatten()
         self.fc = nn.Linear(n_filters, num_classes, bias=True)
     
     def forward(self, X):
