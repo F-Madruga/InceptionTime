@@ -11,24 +11,24 @@ class Inception(nn.Module):
             self.bottleneck = lambda x: x
             bottleneck_channels = 1
         self.conv_bootleneck_1 = nn.Conv1d(
-            in_channels=in_channels,
-            out_channels=bottleneck_channels,
+            in_channels=bottleneck_channels,
+            out_channels=n_filters,
             kernel_size=kernel_sizes[0],
             stride=1,
             padding=kernel_sizes[0]//2,
             bias=False
         )
         self.conv_bootleneck_2 = nn.Conv1d(
-            in_channels=in_channels,
-            out_channels=bottleneck_channels,
+            in_channels=bottleneck_channels,
+            out_channels=n_filters,
             kernel_size=kernel_sizes[1],
             stride=1,
             padding=kernel_sizes[1]//2,
             bias=False
         )
         self.conv_bootleneck_3 = nn.Conv1d(
-            in_channels=in_channels,
-            out_channels=bottleneck_channels,
+            in_channels=bottleneck_channels,
+            out_channels=n_filters,
             kernel_size=kernel_sizes[2],
             stride=1,
             padding=kernel_sizes[2]//2,
