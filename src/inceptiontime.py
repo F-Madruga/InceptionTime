@@ -79,7 +79,7 @@ class InceptionTime(pl.LightningModule):
         self.fc = nn.Linear(4*n_filters[-1], num_classes, bias=True)
     
     def forward(self, X):
-        for i, inception_block in enumerate(self.inception_block):
+        for i, inception_block in enumerate(self.inception_blocks):
             print(i, '- InceptionTime =', X.shape)
             X = inception_block(X)
         X = self.adaptive_avg_pool(X)
