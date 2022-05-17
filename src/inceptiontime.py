@@ -12,7 +12,7 @@ class InceptionTime(pl.LightningModule):
         self.train_accuracy = Accuracy()
         self.val_accuracy = Accuracy()
         self.test_accuracy = Accuracy()
-        self.inception_blocks = nn.ModuleList()
+        self.inception_blocks = []
         for i, n_filter in enumerate(n_filters):
             inception_block = None
             if i == 0:
@@ -34,14 +34,14 @@ class InceptionTime(pl.LightningModule):
                     use_residual=use_residual
                 )
             self.inception_blocks.append(inception_block)
+        self.inception_blocks = nn.Sequential(*self.inception_blocks)
         self.adaptive_avg_pool = nn.AdaptiveAvgPool1d(output_size=1)
         self.flatten = nn.Flatten()
         self.fc = nn.Linear(4*n_filters[-1], num_classes, bias=True)
     
     def forward(self, X):
-        for inception_block in self.inception_blocks:
-            print('1 - InceptionTime =', X.shape)
-            X = inception_block(X)
+        print('1 - InceptionTime =', X.shape)
+        X = self.inception_blocks(X)
         X = self.adaptive_avg_pool(X)
         print('5 - InceptionTime =', X.shape)
         X = self.flatten(X)
