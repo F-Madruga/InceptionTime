@@ -14,13 +14,13 @@ class InceptionBlock(nn.Module):
             bottleneck_channels=bottleneck_channels,
             activation=activation
         )
-        self.inception_2 = Inception(in_channels=4*in_channels,
+        self.inception_2 = Inception(in_channels=4*n_filters,
             n_filters=n_filters,
             kernel_sizes=kernel_sizes,
             bottleneck_channels=bottleneck_channels,
             activation=activation
         )
-        self.inception_3 = Inception(in_channels=4*in_channels,
+        self.inception_3 = Inception(in_channels=4*n_filters,
             n_filters=n_filters,
             kernel_sizes=kernel_sizes,
             bottleneck_channels=bottleneck_channels,
