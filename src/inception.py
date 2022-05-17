@@ -6,7 +6,13 @@ class Inception(nn.Module):
     def __init__(self, in_channels, n_filters=32, kernel_sizes=[9, 19, 39], bottleneck_channels=32, activation=nn.ReLU()):
         super(Inception, self).__init__()
         if in_channels > 1:
-            self.bottleneck = nn.Conv1d(in_channels=in_channels, out_channels=bottleneck_channels, kernel_size=1, stride=1, bias=False)
+            self.bottleneck = nn.Conv1d(
+                in_channels=in_channels,
+                out_channels=bottleneck_channels,
+                kernel_size=1,
+                stride=1,
+                bias=False
+            )
         else:
             self.bottleneck = lambda x: x
             bottleneck_channels = 1

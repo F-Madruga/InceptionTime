@@ -8,12 +8,32 @@ class InceptionBlock(nn.Module):
         super(InceptionBlock, self).__init__()
         self.activation = activation
         self.use_residual = use_residual
-        self.inception_1 = Inception(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation)
-        self.inception_2 = Inception(in_channels=4*in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation)
-        self.inception_3 = Inception(in_channels=4*in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation)
+        self.inception_1 = Inception(in_channels=in_channels,
+            n_filters=n_filters,
+            kernel_sizes=kernel_sizes,
+            bottleneck_channels=bottleneck_channels,
+            activation=activation
+        )
+        self.inception_2 = Inception(in_channels=4*n_filters,
+            n_filters=n_filters,
+            kernel_sizes=kernel_sizes,
+            bottleneck_channels=bottleneck_channels,
+            activation=activation
+        )
+        self.inception_3 = Inception(in_channels=4*n_filters,
+            n_filters=n_filters,
+            kernel_sizes=kernel_sizes,
+            bottleneck_channels=bottleneck_channels,
+            activation=activation
+            )
         if self.use_residual:
             self.residual = nn.Sequential(
-                nn.Conv1d(in_channels=in_channels, out_channels=4*n_filters, kernel_size=1, stride=1, padding=0),
+                nn.Conv1d(in_channels=in_channels,
+                    out_channels=4*n_filters,
+                    kernel_size=1,
+                    stride=1,
+                    padding=0
+                ),
                 nn.BatchNorm1d(num_features=4*n_filters)
             )
     
