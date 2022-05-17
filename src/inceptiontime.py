@@ -59,11 +59,17 @@ class InceptionTime(pl.LightningModule):
     def forward(self, X):
         print('1 - InceptionTime =', X.shape)
         X = self.inception_block_1(X)
+        print('2 - InceptionTime =', X.shape)
         X = self.inception_block_2(X)
+        print('3 - InceptionTime =', X.shape)
         X = self.inception_block_3(X)
+        print('4 - InceptionTime =', X.shape)
         X = self.adaptive_avg_pool(X)
+        print('5 - InceptionTime =', X.shape)
         X = self.flatten(X)
+        print('6 - InceptionTime =', X.shape)
         X = self.fc(X)
+        print('7 - InceptionTime =', X.shape)
         return X
 
     def configure_optimizers(self):
