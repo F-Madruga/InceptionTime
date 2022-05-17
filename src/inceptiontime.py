@@ -28,30 +28,30 @@ class InceptionTime(pl.LightningModule):
             activation=activation,
             use_residual=use_residual
         )
-        self.inception_block_3 = InceptionBlock(
-            in_channels=4*n_filters,
-            n_filters=n_filters,
-            kernel_sizes=kernel_sizes,
-            bottleneck_channels=bottleneck_channels,
-            activation=activation,
-            use_residual=use_residual
-        )
-        self.inception_block_4 = InceptionBlock(
-            in_channels=4*n_filters,
-            n_filters=n_filters,
-            kernel_sizes=kernel_sizes,
-            bottleneck_channels=bottleneck_channels,
-            activation=activation,
-            use_residual=use_residual
-        )
-        self.inception_block_5 = InceptionBlock(
-            in_channels=4*n_filters,
-            n_filters=n_filters,
-            kernel_sizes=kernel_sizes,
-            bottleneck_channels=bottleneck_channels,
-            activation=activation,
-            use_residual=use_residual
-        )
+        # self.inception_block_3 = InceptionBlock(
+        #     in_channels=4*n_filters,
+        #     n_filters=n_filters,
+        #     kernel_sizes=kernel_sizes,
+        #     bottleneck_channels=bottleneck_channels,
+        #     activation=activation,
+        #     use_residual=use_residual
+        # )
+        # self.inception_block_4 = InceptionBlock(
+        #     in_channels=4*n_filters,
+        #     n_filters=n_filters,
+        #     kernel_sizes=kernel_sizes,
+        #     bottleneck_channels=bottleneck_channels,
+        #     activation=activation,
+        #     use_residual=use_residual
+        # )
+        # self.inception_block_5 = InceptionBlock(
+        #     in_channels=4*n_filters,
+        #     n_filters=n_filters,
+        #     kernel_sizes=kernel_sizes,
+        #     bottleneck_channels=bottleneck_channels,
+        #     activation=activation,
+        #     use_residual=use_residual
+        # )
         self.adaptive_avg_pool = nn.AdaptiveAvgPool1d(output_size=1)
         self.flatten = nn.Flatten()
         self.fc = nn.Linear(4*n_filters, num_classes, bias=True)
@@ -61,8 +61,8 @@ class InceptionTime(pl.LightningModule):
         X = self.inception_block_1(X)
         print('2 - InceptionTime =', X.shape)
         X = self.inception_block_2(X)
-        print('3 - InceptionTime =', X.shape)
-        X = self.inception_block_3(X)
+        # print('3 - InceptionTime =', X.shape)
+        # X = self.inception_block_3(X)
         print('4 - InceptionTime =', X.shape)
         X = self.adaptive_avg_pool(X)
         print('5 - InceptionTime =', X.shape)
