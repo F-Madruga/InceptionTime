@@ -54,7 +54,7 @@ class InceptionTime(pl.LightningModule):
         )
         self.adaptive_avg_pool = nn.AdaptiveAvgPool1d(output_size=1)
         self.flatten = nn.Flatten()
-        self.fc = nn.Linear(n_filters, num_classes, bias=True)
+        self.fc = nn.Linear(4*n_filters, num_classes, bias=True)
     
     def forward(self, X):
         print('1 - InceptionTime =', X.shape)
