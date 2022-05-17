@@ -6,17 +6,52 @@ import torch.nn as nn
 
 
 class InceptionTime(pl.LightningModule):
-    def __init__(self, in_channels, num_classes, learning_rate, n_filters=32, kernel_sizes=[9, 19, 39], bottleneck_channels=32, activation=nn.ReLU(), use_residual=True):
+    def __init__(self, in_channels, num_classes, learning_rate=0.0001, n_filters=32, kernel_sizes=[9, 19, 39], bottleneck_channels=32, activation=nn.ReLU(), use_residual=True):
         super(InceptionTime, self).__init__()
         self.learning_rate = learning_rate
         self.train_accuracy = Accuracy()
         self.val_accuracy = Accuracy()
         self.test_accuracy = Accuracy()
-        self.inception_block_1 = InceptionBlock(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation, use_residual=use_residual)
-        self.inception_block_2 = InceptionBlock(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation, use_residual=use_residual)
-        self.inception_block_3 = InceptionBlock(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation, use_residual=use_residual)
-        self.inception_block_4 = InceptionBlock(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation, use_residual=use_residual)
-        self.inception_block_5 = InceptionBlock(in_channels=in_channels, n_filters=n_filters, kernel_sizes=kernel_sizes, bottleneck_channels=bottleneck_channels, activation=activation, use_residual=use_residual)
+        self.inception_block_1 = InceptionBlock(
+            in_channels=in_channels,
+            n_filters=n_filters,
+            kernel_sizes=kernel_sizes,
+            bottleneck_channels=bottleneck_channels,
+            activation=activation,
+            use_residual=use_residual
+            )
+        self.inception_block_2 = InceptionBlock(
+            in_channels=in_channels,
+            n_filters=n_filters,
+            kernel_sizes=kernel_sizes,
+            bottleneck_channels=bottleneck_channels,
+            activation=activation,
+            use_residual=use_residual
+        )
+        self.inception_block_3 = InceptionBlock(
+            in_channels=in_channels,
+            n_filters=n_filters,
+            kernel_sizes=kernel_sizes,
+            bottleneck_channels=bottleneck_channels,
+            activation=activation,
+            use_residual=use_residual
+        )
+        self.inception_block_4 = InceptionBlock(
+            in_channels=in_channels,
+            n_filters=n_filters,
+            kernel_sizes=kernel_sizes,
+            bottleneck_channels=bottleneck_channels,
+            activation=activation,
+            use_residual=use_residual
+        )
+        self.inception_block_5 = InceptionBlock(
+            in_channels=in_channels,
+            n_filters=n_filters,
+            kernel_sizes=kernel_sizes,
+            bottleneck_channels=bottleneck_channels,
+            activation=activation,
+            use_residual=use_residual
+        )
         self.adaptive_avg_pool = nn.AdaptiveAvgPool1d(output_size=1)
         self.flatten = nn.Flatten()
         self.fc = nn.Linear(n_filters, num_classes, bias=True)
