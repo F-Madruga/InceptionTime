@@ -12,7 +12,7 @@ class InceptionTime(pl.LightningModule):
         self.train_accuracy = Accuracy()
         self.val_accuracy = Accuracy()
         self.test_accuracy = Accuracy()
-        self.inception_blocks = []
+        self.inception_blocks = nn.ModuleList()
         for i, n_filter in enumerate(n_filters):
             inception_block = None
             if i == 0:
