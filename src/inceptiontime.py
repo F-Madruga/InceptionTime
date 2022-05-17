@@ -79,15 +79,16 @@ class InceptionTime(pl.LightningModule):
         self.fc = nn.Linear(4*n_filters[-1], num_classes, bias=True)
     
     def forward(self, X):
+        print('1 - InceptionTime =', X.shape)
         for i, inception_block in enumerate(self.inception_blocks):
-            print(i, '- InceptionTime =', X.shape)
+            print(i + 2, '- InceptionTime =', X.shape)
             X = inception_block(X)
         X = self.adaptive_avg_pool(X)
-        print(len(self.inception_blocks), '- InceptionTime =', X.shape)
-        X = self.flatten(X)
-        print(len(self.inception_blocks) + 1, '- InceptionTime =', X.shape)
-        X = self.fc(X)
         print(len(self.inception_blocks) + 2, '- InceptionTime =', X.shape)
+        X = self.flatten(X)
+        print(len(self.inception_blocks) + 3, '- InceptionTime =', X.shape)
+        X = self.fc(X)
+        print(len(self.inception_blocks) + 4, '- InceptionTime =', X.shape)
         return X
 
     def configure_optimizers(self):
