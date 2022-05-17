@@ -38,16 +38,10 @@ class InceptionBlock(nn.Module):
             )
     
     def forward(self, X):
-        print('1 - Inception Block =', X.shape)
         y = self.inception_1(X)
-        print('2 - Inception Block =', y.shape)
         y = self.inception_2(y)
-        print('3 - Inception Block =', y.shape)
         y = self.inception_3(y)
-        print('4 - Inception Block =', y.shape)
         if self.use_residual:
             y = y + self.residual(X)
-            print('5 - Inception Block =', y.shape)
             y = self.activation(y)
-            print('6 - Inception Block =', y.shape)
         return y

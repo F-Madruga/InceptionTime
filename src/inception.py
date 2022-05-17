@@ -53,23 +53,13 @@ class Inception(nn.Module):
         self.activation = activation
     
     def forward(self, X):
-        print('1 - Inception =', X.shape)
         y_bottleneck = self.bottleneck(X)
-        print('2 - Inception =', y_bottleneck.shape)
         y_maxpool = self.max_pool(X)
-        print('3 - Inception =', y_maxpool.shape)
         y1 = self.conv_bootleneck_1(y_bottleneck)
-        print('4 - Inception =', y1.shape)
         y2 = self.conv_bootleneck_2(y_bottleneck)
-        print('5 - Inception =', y2.shape)
         y3 = self.conv_bootleneck_3(y_bottleneck)
-        print('6 - Inception =', y3.shape)
         y4 = self.conv_maxpool(y_maxpool)
-        print('7 - Inception =', y4.shape)
         y = torch.cat([y1, y2, y3, y4], axis=1)
-        print('8 - Inception =', y.shape)
         y = self.bn(y)
-        print('9 - Inception =', y.shape)
         y = self.activation(y)
-        print('10 - Inception =', y.shape)
         return y
