@@ -29,7 +29,7 @@ class InceptionTime(pl.LightningModule):
             use_residual=use_residual
         )
         self.inception_block_3 = InceptionBlock(
-            in_channels=in_channels,
+            in_channels=4*n_filters,
             n_filters=n_filters,
             kernel_sizes=kernel_sizes,
             bottleneck_channels=bottleneck_channels,
@@ -37,7 +37,7 @@ class InceptionTime(pl.LightningModule):
             use_residual=use_residual
         )
         self.inception_block_4 = InceptionBlock(
-            in_channels=in_channels,
+            in_channels=4*n_filters,
             n_filters=n_filters,
             kernel_sizes=kernel_sizes,
             bottleneck_channels=bottleneck_channels,
@@ -45,7 +45,7 @@ class InceptionTime(pl.LightningModule):
             use_residual=use_residual
         )
         self.inception_block_5 = InceptionBlock(
-            in_channels=in_channels,
+            in_channels=4*n_filters,
             n_filters=n_filters,
             kernel_sizes=kernel_sizes,
             bottleneck_channels=bottleneck_channels,
