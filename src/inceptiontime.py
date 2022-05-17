@@ -57,6 +57,7 @@ class InceptionTime(pl.LightningModule):
         self.fc = nn.Linear(n_filters, num_classes, bias=True)
     
     def forward(self, X):
+        print('1 - InceptionTime =', X.shape)
         X = self.inception_block_1(X)
         X = self.inception_block_2(X)
         X = self.inception_block_3(X)
